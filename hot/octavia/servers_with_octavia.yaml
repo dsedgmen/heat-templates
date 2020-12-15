@@ -151,7 +151,7 @@ outputs:
     description: "This URL is the \"external\" URL that can be used to access the load balancer.\n"
     value:
       str_replace:
-        params:
-          PORT:
-            get_param: "lb_port"
         template: "http://IP_ADDRESS:PORT"
+        params:
+          PORT: { get_param: "lb_port" }
+          IP_ADDRESS: {get_attr: [loadbalancer, vip_address]}
